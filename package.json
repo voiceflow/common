@@ -1,0 +1,73 @@
+{
+  "name": "@voiceflow/common",
+  "description": "Junk drawer of utility functions",
+  "version": "0.0.2",
+  "author": "Voiceflow",
+  "bugs": {
+    "url": "https://github.com/storyflow/common/issues"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "devDependencies": {
+    "@commitlint/config-conventional": "^7.5.0",
+    "@voiceflow/eslint-config": "0.0.1",
+    "chai": "^4.2.0",
+    "commitizen": "^3.1.1",
+    "commitlint": "^7.5.2",
+    "cz-conventional-changelog": "^2.1.0",
+    "eslint": "^5.16.0",
+    "fixpack": "^2.3.1",
+    "husky": "^2.2.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^6.1.4",
+    "nyc": "^14.1.0",
+    "semantic-release": "^15.13.3"
+  },
+  "files": [
+    "lib/**",
+    "config/**",
+    "app/**",
+    "*.js",
+    "!scratch.*"
+  ],
+  "homepage": "https://github.com/storyflow/common#readme",
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "fixpack && eslint \"**/*.js\""
+    }
+  },
+  "keywords": [
+    "utilities"
+  ],
+  "license": "ISC",
+  "main": "index.js",
+  "nyc": {
+    "exclude": [
+      "coverage/**",
+      "tests/**",
+      "scratch.js",
+      "index.js"
+    ],
+    "reporter": [
+      "html",
+      "text",
+      "text-summary",
+      "lcov"
+    ],
+    "all": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/storyflow/common.git"
+  },
+  "scripts": {
+    "lint": "eslint \"**/*.js\" --fix",
+    "test": "npm run unit && npm run lint",
+    "test-all": "nyc mocha --use_strict \"tests/**/*.it.js\" \"tests/**/*.unit.js\"",
+    "unit": "nyc mocha --use_strict --exit \"tests/**/*.unit.js\""
+  }
+}
