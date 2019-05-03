@@ -1,4 +1,11 @@
 jobs:
+  release:
+    docker:
+      - image: node:11
+    steps:
+      - checkout
+      - run: npm i
+      - run: npx semantic-release
   test:
     docker:
       - image: node:11
@@ -34,3 +41,4 @@ workflows:
   test-and-build:
     jobs:
       - test
+      - release
