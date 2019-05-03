@@ -1,6 +1,6 @@
 {
   "name": "@voiceflow/common",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Junk drawer of utility functions",
   "main": "index.js",
   "scripts": {
