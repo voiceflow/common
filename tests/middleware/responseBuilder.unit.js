@@ -81,7 +81,11 @@ describe('responseBuilder unit tests', () => {
 
     expect(res.status.args[0][0]).to.eql(expected.code);
 
-    expect(res.status().json.args[0][0]).to.eql(expected.data);
+    expect(res.status().json.args[0][0].code).to.eql(expected.code);
+    expect(res.status().json.args[0][0].status).to.eql(expected.status);
+
+    expect(res.status().json.args[0][0].dateTime).to.not.be.undefined;
+    expect(res.status().json.args[0][0].timestamp).to.not.be.undefined;
   });
 
   it('returns bad response with overridden code', async () => {
@@ -98,7 +102,11 @@ describe('responseBuilder unit tests', () => {
 
     expect(res.status.args[0][0]).to.eql(expected.code);
 
-    expect(res.status().json.args[0][0]).to.eql(expected.data);
+    expect(res.status().json.args[0][0].code).to.eql(expected.code);
+    expect(res.status().json.args[0][0].status).to.eql(expected.status);
+
+    expect(res.status().json.args[0][0].dateTime).to.not.be.undefined;
+    expect(res.status().json.args[0][0].timestamp).to.not.be.undefined;
   });
 
   it('returns bad response when error is returned', async () => {
@@ -114,7 +122,11 @@ describe('responseBuilder unit tests', () => {
 
     expect(res.status.args[0][0]).to.eql(expected.code);
 
-    expect(res.status().json.args[0][0]).to.eql(expected.data);
+    expect(res.status().json.args[0][0].code).to.eql(expected.code);
+    expect(res.status().json.args[0][0].status).to.eql(expected.status);
+
+    expect(res.status().json.args[0][0].dateTime).to.not.be.undefined;
+    expect(res.status().json.args[0][0].timestamp).to.not.be.undefined;
   });
 
   it('returns bad response with Error', async () => {
@@ -127,11 +139,17 @@ describe('responseBuilder unit tests', () => {
     const expected = {
       code: 500,
       status: 'Internal Server Error',
+      data: 'boom',
     };
 
     expect(res.status.args[0][0]).to.eql(expected.code);
 
-    expect(res.status().json.args[0][0]).to.eql(expected.data);
+    expect(res.status().json.args[0][0].code).to.eql(expected.code);
+    expect(res.status().json.args[0][0].data).to.eql(expected.data);
+    expect(res.status().json.args[0][0].status).to.eql(expected.status);
+
+    expect(res.status().json.args[0][0].dateTime).to.not.be.undefined;
+    expect(res.status().json.args[0][0].timestamp).to.not.be.undefined;
   });
 
   it('returns bad response with code 503', async () => {
@@ -144,11 +162,17 @@ describe('responseBuilder unit tests', () => {
     const expected = {
       code: 503,
       status: 'Service Unavailable',
+      data: 'boom',
     };
 
     expect(res.status.args[0][0]).to.eql(expected.code);
 
-    expect(res.status().json.args[0][0]).to.eql(expected.data);
+    expect(res.status().json.args[0][0].code).to.eql(expected.code);
+    expect(res.status().json.args[0][0].data).to.eql(expected.data);
+    expect(res.status().json.args[0][0].status).to.eql(expected.status);
+
+    expect(res.status().json.args[0][0].dateTime).to.not.be.undefined;
+    expect(res.status().json.args[0][0].timestamp).to.not.be.undefined;
   });
 
   it('returns bad response with data', async () => {
@@ -166,5 +190,28 @@ describe('responseBuilder unit tests', () => {
     expect(res.status.args[0][0]).to.eql(expected.code);
 
     expect(res.status().json.args[0][0]).to.eql({ foo: 'bar' });
+  });
+
+  it('returns bad response with data from message', async () => {
+    const responseBuilder = new ResponseBuilder();
+    const res = { status: sinon.stub().returns({ json: sinon.stub() }) };
+    const dataPromise = new Promise((resolve, reject) => reject(new VError('boom')));
+
+    await responseBuilder.respond(res, dataPromise);
+
+    const expected = {
+      code: 500,
+      status: 'Internal Server Error',
+      data: 'boom',
+    };
+
+    expect(res.status.args[0][0]).to.eql(expected.code);
+
+    expect(res.status().json.args[0][0].code).to.eql(expected.code);
+    expect(res.status().json.args[0][0].data).to.eql(expected.data);
+    expect(res.status().json.args[0][0].status).to.eql(expected.status);
+
+    expect(res.status().json.args[0][0].dateTime).to.not.be.undefined;
+    expect(res.status().json.args[0][0].timestamp).to.not.be.undefined;
   });
 });

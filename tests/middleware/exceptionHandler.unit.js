@@ -21,7 +21,12 @@ describe('exceptionHandler unit tests', () => {
     await exceptionHandler.handleNotFound(req, res);
 
     expect(res.status.args[0][0]).to.eql(VError.HTTP_STATUS.NOT_FOUND);
-    expect(res.status().json.args[0][0]).to.eql(undefined);
+    expect(res.status().json.args[0][0].code).to.eql(VError.HTTP_STATUS.NOT_FOUND);
+    expect(res.status().json.args[0][0].data).to.eql('URL: http://google.com with method: POST is not a valid path');
+    expect(res.status().json.args[0][0].status).to.eql('Not Found');
+
+    expect(res.status().json.args[0][0].dateTime).to.not.be.undefined;
+    expect(res.status().json.args[0][0].timestamp).to.not.be.undefined;
   });
 
   it('handles 500', async () => {
@@ -35,6 +40,11 @@ describe('exceptionHandler unit tests', () => {
     await exceptionHandler.handleError(error, req, res, next);
 
     expect(res.status.args[0][0]).to.eql(VError.HTTP_STATUS.INTERNAL_SERVER_ERROR);
-    expect(res.status().json.args[0][0]).to.eql(undefined);
+    expect(res.status().json.args[0][0].code).to.eql(VError.HTTP_STATUS.INTERNAL_SERVER_ERROR);
+    expect(res.status().json.args[0][0].data).to.eql('Unhandled error occurred');
+    expect(res.status().json.args[0][0].status).to.eql('Internal Server Error');
+
+    expect(res.status().json.args[0][0].dateTime).to.not.be.undefined;
+    expect(res.status().json.args[0][0].timestamp).to.not.be.undefined;
   });
 });
