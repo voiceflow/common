@@ -11,6 +11,15 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
+  "dependencies": {
+    "@voiceflow/verror": "^1.1.0",
+    "bluebird": "^3.5.4",
+    "bunyan": "^1.8.12",
+    "bunyan-prettystream": "^0.1.3",
+    "http-status": "^1.3.2",
+    "lodash": "^4.17.11",
+    "luxon": "^1.13.2"
+  },
   "devDependencies": {
     "@commitlint/config-conventional": "^7.5.0",
     "@voiceflow/eslint-config": "0.0.1",
@@ -24,7 +33,8 @@
     "istanbul": "^0.4.5",
     "mocha": "^6.1.4",
     "nyc": "^14.1.0",
-    "semantic-release": "^15.13.3"
+    "semantic-release": "^15.13.3",
+    "sinon": "^7.3.2"
   },
   "files": [
     "lib/**",
@@ -50,7 +60,9 @@
       "coverage/**",
       "tests/**",
       "scratch.js",
-      "index.js"
+      "index.js",
+      ".*.js",
+      "commitlint.config.js"
     ],
     "reporter": [
       "html",
