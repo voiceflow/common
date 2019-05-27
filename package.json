@@ -92,6 +92,7 @@
     "url": "git+https://github.com/storyflow/common.git"
   },
   "scripts": {
+    "commit": "git-cz",
     "lint": "eslint \"**/*.js\" --fix",
     "prepare": "fixpack",
     "send-coverage": "cat ./coverage/lcov.info | codacy-coverage",
