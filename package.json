@@ -23,6 +23,7 @@
   "devDependencies": {
     "@commitlint/config-conventional": "^7.5.0",
     "@voiceflow/eslint-config": "^1.0.0",
+    "@voiceflow/git-branch-check": "^1.0.2",
     "@voiceflow/prettier-config": "^1.0.4",
     "chai": "^4.2.0",
     "codacy-coverage": "^3.4.0",
@@ -51,7 +52,8 @@
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "pre-push": "git-branch-check"
     }
   },
   "keywords": [
