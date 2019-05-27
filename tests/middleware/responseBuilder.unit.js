@@ -13,9 +13,9 @@ describe('responseBuilder unit tests', () => {
   it('returns ok response', async () => {
     const responseBuilder = new ResponseBuilder();
     const res = { status: sinon.stub().returns({ json: sinon.stub() }) };
-    const dataPromise = new Promise((resolve) => resolve({ foo: 'bar' }));
+    const dataPromise = async () => ({ foo: 'bar' });
 
-    await responseBuilder.respond(res, dataPromise);
+    await responseBuilder.route(dataPromise)(undefined, res);
 
     const expected = {
       code: 200,
@@ -35,7 +35,7 @@ describe('responseBuilder unit tests', () => {
     const res = { status: sinon.stub().returns({ json: sinon.stub() }) };
     const dataPromise = new Promise((resolve) => resolve({ foo: 'bar' }));
 
-    await responseBuilder.respond(res, dataPromise, VError.HTTP_STATUS.NO_CONTENT);
+    await responseBuilder.route(dataPromise, VError.HTTP_STATUS.NO_CONTENT)(undefined, res);
 
     const expected = {
       code: 204,
@@ -55,7 +55,7 @@ describe('responseBuilder unit tests', () => {
     const res = { status: sinon.stub().returns({ json: sinon.stub() }) };
     const dataPromise = new Promise((resolve) => resolve());
 
-    await responseBuilder.respond(res, dataPromise);
+    await responseBuilder.route(dataPromise)(undefined, res);
 
     const expected = {
       code: 200,
@@ -72,7 +72,7 @@ describe('responseBuilder unit tests', () => {
     const res = { status: sinon.stub().returns({ json: sinon.stub() }) };
     const dataPromise = new Promise((resolve, reject) => reject(new VError('boom')));
 
-    await responseBuilder.respond(res, dataPromise);
+    await responseBuilder.route(dataPromise)(undefined, res);
 
     const expected = {
       code: 500,
@@ -93,7 +93,7 @@ describe('responseBuilder unit tests', () => {
     const res = { status: sinon.stub().returns({ json: sinon.stub() }) };
     const dataPromise = new Promise((resolve, reject) => reject(new VError('boom')));
 
-    await responseBuilder.respond(res, dataPromise, undefined, VError.HTTP_STATUS.BAD_REQUEST);
+    await responseBuilder.route(dataPromise, undefined, VError.HTTP_STATUS.BAD_REQUEST)(undefined, res);
 
     const expected = {
       code: 400,
@@ -113,7 +113,7 @@ describe('responseBuilder unit tests', () => {
     const responseBuilder = new ResponseBuilder();
     const res = { status: sinon.stub().returns({ json: sinon.stub() }) };
 
-    await responseBuilder.respond(res, new VError('boom'));
+    await responseBuilder.route(new VError('boom'))(undefined, res);
 
     const expected = {
       code: 500,
@@ -134,7 +134,7 @@ describe('responseBuilder unit tests', () => {
     const res = { status: sinon.stub().returns({ json: sinon.stub() }) };
     const dataPromise = new Promise((resolve, reject) => reject(new Error('boom')));
 
-    await responseBuilder.respond(res, dataPromise);
+    await responseBuilder.route(dataPromise)(undefined, res);
 
     const expected = {
       code: 500,
@@ -157,7 +157,7 @@ describe('responseBuilder unit tests', () => {
     const res = { status: sinon.stub().returns({ json: sinon.stub() }) };
     const dataPromise = new Promise((resolve, reject) => reject(new VError('boom', HttpStatus.SERVICE_UNAVAILABLE)));
 
-    await responseBuilder.respond(res, dataPromise);
+    await responseBuilder.route(dataPromise)(undefined, res);
 
     const expected = {
       code: 503,
@@ -180,7 +180,7 @@ describe('responseBuilder unit tests', () => {
     const res = { status: sinon.stub().returns({ json: sinon.stub() }) };
     const dataPromise = new Promise((resolve, reject) => reject(new VError('boom', undefined, { foo: 'bar' })));
 
-    await responseBuilder.respond(res, dataPromise);
+    await responseBuilder.route(dataPromise)(undefined, res);
 
     const expected = {
       code: 500,
@@ -197,7 +197,7 @@ describe('responseBuilder unit tests', () => {
     const res = { status: sinon.stub().returns({ json: sinon.stub() }) };
     const dataPromise = new Promise((resolve, reject) => reject(new VError('boom')));
 
-    await responseBuilder.respond(res, dataPromise);
+    await responseBuilder.route(dataPromise)(undefined, res);
 
     const expected = {
       code: 500,
