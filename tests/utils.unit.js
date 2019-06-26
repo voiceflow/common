@@ -4,7 +4,7 @@
 
 const { expect } = require('chai');
 
-const utils = require('../lib/utils');
+const utils = require('../lib/utils').general;
 
 describe('test utils functions', () => {
   it('throws if process env is not found', () => {
