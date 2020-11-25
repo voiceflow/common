@@ -1,10 +1,6 @@
-'use strict';
+import { expect } from 'chai';
 
-/* eslint-disable no-process-env */
-
-const { expect } = require('chai');
-
-const utils = require('../lib/utils').general;
+import { general as utils } from '../lib/utils';
 
 describe('test utils functions', () => {
   it('throws if process env is not found', () => {

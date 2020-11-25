@@ -12,15 +12,23 @@
     }
   },
   "dependencies": {
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.20",
     "moment": "^2.24.0",
     "randomstring": "^1.1.5"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^8.0.0",
+    "@istanbuljs/nyc-config-typescript": "^1.0.1",
+    "@types/chai": "^4.2.14",
+    "@types/lodash": "^4.14.165",
+    "@types/mocha": "^8.0.4",
+    "@types/randomstring": "^1.1.6",
+    "@typescript-eslint/eslint-plugin": "^4.8.2",
+    "@typescript-eslint/parser": "^4.8.2",
     "@voiceflow/eslint-config": "^2.0.1",
     "@voiceflow/git-branch-check": "^1.0.2",
     "@voiceflow/prettier-config": "^1.0.4",
+    "@zerollup/ts-transform-paths": "^1.7.18",
     "chai": "^4.2.0",
     "codacy-coverage": "^3.4.0",
     "commitizen": "^3.1.1",
@@ -37,14 +45,13 @@
     "prettier": "^1.18.2",
     "semantic-release": "^15.13.17",
     "sinon": "^7.3.2",
-    "supertest": "^4.0.2"
+    "supertest": "^4.0.2",
+    "ts-mocha": "^8.0.0",
+    "ttypescript": "^1.5.12",
+    "typescript": "^4.1.2"
   },
   "files": [
-    "lib/**",
-    "config/**",
-    "app/**",
-    "*.js",
-    "!scratch.*"
+    "build"
   ],
   "homepage": "https://github.com/storyflow/common#readme",
   "husky": {
@@ -63,40 +70,24 @@
       "fixpack",
       "git add"
     ],
-    "**/*.js": [
+    "**/*.{js,ts}": [
       "eslint --fix",
       "git add"
     ]
   },
-  "main": "index.js",
-  "nyc": {
-    "exclude": [
-      "coverage/**",
-      "tests/**",
-      "scratch.js",
-      "index.js",
-      ".*.js",
-      "commitlint.config.js"
-    ],
-    "reporter": [
-      "html",
-      "text",
-      "text-summary",
-      "lcov"
-    ],
-    "all": true
-  },
+  "main": "build/index.js",
   "prettier": "@voiceflow/prettier-config",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/storyflow/common.git"
   },
   "scripts": {
+    "build": "yarn clean && ttsc --project ./tsconfig.build.json",
+    "clean": "rimraf build",
     "commit": "git-cz",
-    "lint": "eslint \"**/*.js\" --fix",
-    "prepare": "fixpack",
-    "send-coverage": "cat ./coverage/lcov.info | codacy-coverage",
-    "test": "nyc mocha --use_strict \"tests/**/*.it.js\" \"tests/**/*.unit.js\"",
-    "unit": "mocha --use_strict --exit \"tests/**/*.unit.js\""
+    "lint": "eslint \"**/*.{js,ts}\"",
+    "lint:quiet": "yarn lint --quiet",
+    "prepare": "yarn build",
+    "test": "NODE_ENV=test nyc ts-mocha --paths --opts mocha.opts"
   }
 }

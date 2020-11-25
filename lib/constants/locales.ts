@@ -1,6 +1,4 @@
-'use strict';
-
-exports.LOCALES = {
+export const LOCALES = {
   US: 'en-US',
   AU: 'en-AU',
   CA: 'en-CA',
@@ -18,7 +16,7 @@ exports.LOCALES = {
   IN_hi: 'hi-IN',
 };
 
-exports.GOOGLE_LOCALES = {
+export const GOOGLE_LOCALES = {
   HK: 'zh-HK',
   CN: 'zh-CN',
   TW: 'zh-TW',
@@ -44,7 +42,7 @@ exports.GOOGLE_LOCALES = {
   UK: 'uk',
 };
 
-exports.VOICES = {
+export const VOICES = {
   'de-DE': 'Marlene',
   'en-AU': 'Nicole',
   'en-CA': 'Joanna',

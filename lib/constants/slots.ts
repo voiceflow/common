@@ -1,8 +1,6 @@
-'use strict';
+import { GOOGLE_LOCALES as GL, LOCALES as L } from './locales';
 
-const { GOOGLE_LOCALES: GL, LOCALES: L } = require('./locales');
-
-module.exports = [
+export = [
   { label: 'Custom', type: { alexa: null, google: null }, locales: { alexa: null, google: null } },
   {
     label: 'Date',
