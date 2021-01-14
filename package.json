@@ -97,9 +97,8 @@
     "lint:fix": "yarn lint --fix",
     "lint:quiet": "yarn lint --quiet",
     "prepare": "fixpack",
-    "test": "NODE_ENV=test nyc ts-mocha --opts ./config/tests/mocha.opts tests/**/*.{unit,it}.ts",
-    "test:integration": "NODE_ENV=test nyc ts-mocha --opts ./config/tests/mocha.opts tests/**/*.it.ts",
+    "test": "NODE_ENV=test nyc ts-mocha --opts ./config/tests/mocha.opts tests/**/*.{unit,it}.js",
     "test:single": "NODE_ENV=test mocha --opts ./config/tests/mocha.opts",
-    "test:unit": "NODE_ENV=test nyc mocha --opts ./config/tests/mocha.opts tests/**/*.unit.ts"
+    "test:unit": "NODE_ENV=test nyc mocha --opts ./config/tests/mocha.opts tests/**/*.unit.js"
   }
 }
