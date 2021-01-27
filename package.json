@@ -57,13 +57,10 @@
   "license": "ISC",
   "lint-staged": {
     "package.json": [
-      "fixpack",
-      "git add"
+      "fixpack"
     ],
     "**/*.js": [
-      "eslint --fix",
-      "prettier-eslint --write",
-      "git add"
+      "eslint --fix"
     ]
   },
   "main": "index.js",
