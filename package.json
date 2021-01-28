@@ -42,7 +42,7 @@
     "fixpack": "^3.0.6",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
-    "mocha": "^8.0.1",
+    "mocha": "^6.2.2",
     "nyc": "^15.1.0",
     "prettier": "^2.0.5",
     "prettier-eslint-cli": "^5.0.0",
@@ -50,7 +50,7 @@
     "semantic-release": "^17.1.1",
     "sinon": "^9.0.2",
     "source-map-support": "^0.5.19",
-    "ts-mocha": "^7.0.0",
+    "ts-mocha": "^6.0.0",
     "ts-node": "^8.10.2",
     "tsconfig-paths": "^3.9.0",
     "ttypescript": "^1.5.10",
@@ -88,7 +88,7 @@
     "lint": "eslint \"src/**/*.ts\"",
     "prepare": "npm run build",
     "tdd": "yarn test --watch",
-    "test": "NODE_ENV=test nyc ts-mocha --paths"
+    "test": "NODE_ENV=test nyc ts-mocha --paths --opts ./config/tests/mocha.opts 'tests/**/*.{unit,it}.ts'"
   },
   "types": "build/index.d.ts"
 }
