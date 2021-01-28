@@ -13,5 +13,8 @@ coverage:
           - unit
           - integration
         paths:
-          - lib
+          - src
         only_pulls: true
+
+ignore:
+  - "*.js"

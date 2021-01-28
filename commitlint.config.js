@@ -1,3 +1,3 @@
-'use strict';
-
-module.exports = { extends: ['@voiceflow/commitlint-config'] };
+module.exports = {
+  extends: ['@voiceflow/commitlint-config'],
+};
