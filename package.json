@@ -87,6 +87,7 @@
     "clean": "rimraf build",
     "lint": "eslint \"src/**/*.ts\"",
     "lint:quiet": "yarn lint --quiet",
+    "lint:report": "yarn lint --format json -o sonar/report.json",
     "prepare": "npm run build",
     "tdd": "yarn test --watch",
     "test": "NODE_ENV=test nyc ts-mocha --paths --opts ./config/tests/mocha.opts 'tests/**/*.{unit,it}.ts'"
