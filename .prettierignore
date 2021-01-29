@@ -4,7 +4,6 @@ coverage
 scratch.js
 /scripts
 /.ebextensions/
-/app/
 /log/
 /routes/multimodal/apl_authoring_tool
 /database
