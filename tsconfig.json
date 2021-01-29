@@ -25,11 +25,11 @@
     "listEmittedFiles": false,
     "listFiles": false,
     "pretty": true,
-    "lib": ["es2017", "DOM"],
+    "lib": ["es2017"],
     "outDir": "./build",
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./*"]
     }
   },
   "compileOnSave": false,

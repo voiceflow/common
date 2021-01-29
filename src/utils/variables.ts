@@ -26,7 +26,7 @@ export const replaceVariables = (
 };
 
 // turn float variables to 2 decimal places
-export const sanitizeVariables = (variables: Record<string, unknown>) =>
+export const sanitizeVariables = (variables: Record<string, unknown>): Record<string, unknown> =>
   Object.entries(variables).reduce<Record<string, unknown>>((acc, [key, value]) => {
     if (typeof value === 'number' && !Number.isInteger(value)) {
       acc[key] = (value as number).toFixed(2);
