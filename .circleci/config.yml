@@ -9,7 +9,7 @@ defaults:
         - /cherry-pick-rebase-pull-request-.*/
 
 orbs:
-  vfcommon: voiceflow/common@0.0.67
+  vfcommon: voiceflow/common@0.0.68
   codecov: codecov/codecov@1.0.2
   sonarcloud: sonarsource/sonarcloud@1.0.2
 
@@ -23,6 +23,7 @@ jobs:
       - vfcommon/lint_report
       - vfcommon/dependency_tests:
           step_name: Dependency Tests
+      - vfcommon/build
       - vfcommon/unit_tests
       - codecov/upload:
           file: nyc_coverage/lcov.info
