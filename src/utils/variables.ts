@@ -52,6 +52,7 @@ export const transformStringVariableToNumber = (str: string | number | null): nu
 };
 
 export const deepVariableSubstitution = <T extends any>(bodyData: T, variableMap: Record<string, unknown>): T => {
+  // eslint-disable-next-line no-underscore-dangle
   const _recurse = (subCollection: any, modifier?: (variable: unknown) => unknown): any => {
     if (!subCollection) {
       return subCollection;
@@ -67,6 +68,7 @@ export const deepVariableSubstitution = <T extends any>(bodyData: T, variableMap
 
     if (typeof subCollection === 'object') {
       Object.keys(subCollection).forEach((key) => {
+        // eslint-disable-next-line no-param-reassign
         subCollection[key] =
           key === 'url' ? _recurse(subCollection[key], (variable) => encodeURI(decodeURI(String(variable)))) : _recurse(subCollection[key]);
       });

@@ -1,11 +1,9 @@
 module.exports = {
-  extends: ['@voiceflow/eslint-config', 'plugin:@typescript-eslint/recommended'],
-  parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint'],
+  extends: ['@voiceflow/eslint-config', '@voiceflow/eslint-config/typescript'],
   overrides: [
     {
-      files: ['*.ts'],
-      extends: ['@voiceflow/eslint-config/typescript'],
+      files: ['.*rc.js', '*.config.js'],
+      extends: ['@voiceflow/eslint-config/utility'],
     },
   ],
 };
