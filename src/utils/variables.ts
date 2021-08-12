@@ -16,8 +16,8 @@ export const variableReplacer = (
 export const replaceVariables = (
   phrase: string | undefined | null,
   variables: Record<string, unknown>,
-  modifier?: (variable: unknown) => unknown,
-  trim = true
+  modifier: ((variable: unknown) => unknown) | undefined = undefined,
+  { trim = true }: { trim?: boolean } = {}
 ): string => {
   if (!phrase || (trim && !phrase.trim())) {
     return '';
