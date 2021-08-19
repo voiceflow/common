@@ -16,10 +16,10 @@ export const getRequiredProcessEnv = (name: string): string => {
 
 export function getOptionalProcessEnv(name: string, defaultVar?: never): null;
 
-export function getOptionalProcessEnv(name: string, defaultVar: string): string;
+export function getOptionalProcessEnv<T>(name: string, defaultVar: T): T | string;
 
 // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
-export function getOptionalProcessEnv(name: string, defaultVar?: string): null | string {
+export function getOptionalProcessEnv<T>(name: string, defaultVar?: T): null | T | string {
   return hasProcessEnv(name) ? getRequiredProcessEnv(name) : defaultVar ?? null;
 }
 
