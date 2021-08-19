@@ -15,7 +15,7 @@ export const getRequiredProcessEnv = (name: string): string => {
 };
 
 export function getOptionalProcessEnv<T>(name: string): null | string;
-export function getOptionalProcessEnv<T>(name: string, defaultVar: T): T | string;
+export function getOptionalProcessEnv<T>(name: string, defaultVar: T): (T extends NonNullable<T> ? T : NonNullable<T> | null) | string;
 
 // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
 export function getOptionalProcessEnv<T>(name: string, defaultVar?: T | undefined): (null | T) | string {
