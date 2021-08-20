@@ -2,24 +2,32 @@ import dotenv from 'dotenv';
 import fs from 'fs';
 import path from 'path';
 
-export const hasProcessEnv = (name: string): boolean => name in process.env;
+const normalizeEnvValue = (value: string) => value.trim();
+
+export const hasProcessEnv = (name: string): boolean => !!normalizeEnvValue(process.env[name] ?? '');
 
 export const getRequiredProcessEnv = (name: string): string => {
-  const envVar = process.env[name]?.trim();
-
-  if (!envVar) {
-    throw new Error(`env var: ${name} not found`);
+  if (hasProcessEnv(name)) {
+    return normalizeEnvValue(process.env[name]!);
   }
 
-  return envVar;
+  throw new Error(`env var: ${name} not found`);
 };
 
-export function getOptionalProcessEnv<T>(name: string): null | string;
-export function getOptionalProcessEnv<T>(name: string, defaultVar: T): (T extends NonNullable<T> ? T : NonNullable<T> | null) | string;
+// null or undefined will return the variable or null
+export function getOptionalProcessEnv(name: string, defaultVar?: null | undefined): string | null;
+// will return the variable or string of default value
+export function getOptionalProcessEnv(name: string, defaultVar: unknown): string;
+export function getOptionalProcessEnv(name: string, defaultVar?: unknown): string | null {
+  if (hasProcessEnv(name)) {
+    return getRequiredProcessEnv(name);
+  }
 
-// eslint-disable-next-line prefer-arrow/prefer-arrow-functions
-export function getOptionalProcessEnv<T>(name: string, defaultVar?: T | undefined): (null | T) | string {
-  return hasProcessEnv(name) ? getRequiredProcessEnv(name) : defaultVar ?? null;
+  if (defaultVar === null || defaultVar === undefined) {
+    return null;
+  }
+
+  return typeof defaultVar === 'object' ? JSON.stringify(defaultVar!) : String(defaultVar);
 }
 
 /* eslint-disable no-console */
