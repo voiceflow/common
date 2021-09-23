@@ -30,3 +30,9 @@ export type NullableRecord<T extends object> = { [K in keyof T]: Nullable<T[K]> 
 export type NonNullishRecord<T extends object> = Required<{ [K in keyof T]: Exclude<T[K], null> }>;
 
 export type Struct = Record<string, unknown>;
+
+/**
+ * An object with no keys or values.
+ * @see https://github.com/typescript-eslint/typescript-eslint/issues/2063#issuecomment-675156492
+ */
+export type EmptyObject = Record<never, never>;
