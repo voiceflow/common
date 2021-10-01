@@ -14,8 +14,8 @@ class Base64 {
     return Utf8.stringify(CryptoBase64.parse(data));
   }
 
-  public static decodeJSON<T>(data: string | undefined): T {
-    return JSON.parse(data ? Base64.decode(data) : '');
+  public static decodeJSON<T>(data?: string): T {
+    return data ? JSON.parse(Base64.decode(data)) : '';
   }
 }
 
