@@ -13,15 +13,22 @@
   },
   "dependencies": {
     "@types/crypto-js": "^4.0.2",
-    "crypto-js": "^4.1.1"
+    "bson-objectid": "^2.0.1",
+    "crypto-js": "^4.1.1",
+    "cuid": "^2.1.8",
+    "dayjs": "^1.10.7",
+    "lodash": "^4.17.21",
+    "number-to-words": "^1.2.4"
   },
   "devDependencies": {
     "@commitlint/cli": "^12.1.4",
     "@istanbuljs/nyc-config-typescript": "^1.0.1",
     "@types/chai": "^4.2.18",
     "@types/chai-as-promised": "^7.1.4",
+    "@types/lodash": "^4.14.176",
     "@types/mocha": "^8.2.2",
     "@types/node": "^15.3.1",
+    "@types/number-to-words": "1.2.0",
     "@types/sinon": "^10.0.0",
     "@voiceflow/commitlint-config": "^1.1.0",
     "@voiceflow/eslint-config": "^3.2.2",
