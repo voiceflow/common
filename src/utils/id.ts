@@ -1,4 +1,6 @@
 import ObjectId from 'bson-objectid';
+import cuid from 'cuid';
 
-// eslint-disable-next-line import/prefer-default-export
-export const objectID = () => new ObjectId().toHexString();
+export { cuid };
+
+export const objectID = (): string => new ObjectId().toHexString();

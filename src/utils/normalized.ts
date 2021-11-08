@@ -1,14 +1,11 @@
+import { Normalized } from '@/types';
+
 import { withoutValue } from './array';
 import { stringify } from './functional';
 import { hasProperty } from './object';
 
 export interface ObjectWithId {
   id: number | string;
-}
-
-export interface Normalized<T> {
-  byKey: Record<string, T>;
-  allKeys: string[];
 }
 
 export interface RemoveNormalizedByKey {
@@ -28,8 +25,6 @@ export interface SafeGetNormalizedByKey {
 
 export const createEmptyNormalized = (): Normalized<any> => ({ byKey: {}, allKeys: [] });
 export const EMPTY = createEmptyNormalized();
-
-export type NormalizedValue<T> = T extends Normalized<infer R> ? R : never;
 
 export type GetKey<T> = (obj: T, index?: number, array?: T[]) => string;
 export type GetKeyFromMap<T> = (obj: T, index: number, array: T[]) => string;

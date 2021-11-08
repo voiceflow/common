@@ -1,7 +1,3 @@
-import cuid from 'cuid';
-
-export { cuid };
-
 const TAGS_REGEXP = /(<([^>]+)>)/gi;
 const TRAILING_UNDERSCORES_REGEXP = /^_+|_+$/g;
 
