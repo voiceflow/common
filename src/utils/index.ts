@@ -1,3 +1,4 @@
+export * as array from './array';
 export * as emails from './emails';
 export * as functional from './functional';
 export * as generate from './generate';
