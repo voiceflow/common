@@ -1,6 +1,21 @@
 import { expect } from 'chai';
 
-import { append, head, insert, insertAll, replace, tail, toggleMembership, unique, without, withoutValue, withoutValues } from '@/utils/array';
+import {
+  append,
+  filterOutNullish,
+  head,
+  insert,
+  insertAll,
+  isNotNullish,
+  isNullish,
+  replace,
+  tail,
+  toggleMembership,
+  unique,
+  without,
+  withoutValue,
+  withoutValues,
+} from '@/utils/array';
 
 describe('Utils | array', () => {
   describe('unique()', () => {
@@ -92,6 +107,30 @@ describe('Utils | array', () => {
       expect(tail(['a', 'b', 'c', 'd'])).to.eql([['a', 'b', 'c'], 'd']);
       expect(tail(['a'])).to.eql([[], 'a']);
       expect(tail([])).to.eql([[], undefined]);
+    });
+  });
+
+  describe('filterOutNullish()', () => {
+    it('filters nullish values', () => {
+      expect(filterOutNullish([undefined, 1, null])).to.eql([1]);
+      expect(filterOutNullish([undefined, null])).to.eql([]);
+      expect(filterOutNullish([1])).to.eql([1]);
+    });
+  });
+
+  describe('isNullish()', () => {
+    it('works', () => {
+      expect(isNullish(null)).to.eql(true);
+      expect(isNullish(undefined)).to.eql(true);
+      expect(isNullish(0)).to.eql(false);
+    });
+  });
+
+  describe('isNotNullish()', () => {
+    it('works', () => {
+      expect(isNotNullish(null)).to.eql(false);
+      expect(isNotNullish(undefined)).to.eql(false);
+      expect(isNotNullish(0)).to.eql(true);
     });
   });
 });
