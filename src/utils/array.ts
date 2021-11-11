@@ -108,4 +108,9 @@ export const asyncForEach = async <T>(array: T[], callback: (item: T, index: num
   }
 };
 
-export const filterOutNullish = <T>(items: Nullish<T>[]): T[] => items.filter((item = null) => item !== null) as T[];
+export const isNullish = (value: unknown): value is Nullish => value === null || value === undefined;
+
+export const isNotNullish = <T>(value: T): value is NonNullable<T> => value !== null && value !== undefined;
+
+/** @deprecated Use `array.filter(isNotNullish)` instead. */
+export const filterOutNullish = <T>(items: readonly T[]): Array<NonNullable<T>> => items.filter(isNotNullish);

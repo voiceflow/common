@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-types, @typescript-eslint/no-explicit-any */
 export type Nullable<T> = T | null;
-export type Nullish<T> = Nullable<T> | undefined;
+export type Nullish<T = unknown> = Nullable<T> | undefined;
 
 export type Function<A extends any[] = any[], R = any> = (...args: A) => R;
 
@@ -27,7 +27,7 @@ export type Writeable<T> = { -readonly [P in keyof T]: T[P] };
 
 export type NullableRecord<T extends object> = { [K in keyof T]: Nullable<T[K]> };
 
-export type NonNullishRecord<T extends object> = Required<{ [K in keyof T]: Exclude<T[K], null> }>;
+export type NonNullishRecord<T extends object> = Required<{ [K in keyof T]: NonNullable<T[K]> }>;
 
 export type Struct = Record<string, unknown>;
 
