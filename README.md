@@ -1,3 +1,6 @@
+
+**Important note:** Package has moved to [libs](https://github.com/voiceflow/libs) repo.
+
 # common
 
 [![circle ci](https://circleci.com/gh/voiceflow/common/tree/master.svg?style=shield&circle-token=b8ef434646ff25f48bd1d7435feadd29a79f482b)](https://circleci.com/gh/voiceflow/common/tree/master)
