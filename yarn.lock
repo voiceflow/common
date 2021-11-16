@@ -618,14 +618,14 @@
   resolved "https://registry.yarnpkg.com/@ungap/promise-all-settled/-/promise-all-settled-1.1.2.tgz#aa58042711d6e3275dd37dc597e5d31e8c290a44"
   integrity sha512-sL/cEvJWAnClXw0wHk85/2L0G6Sj8UB0Ctc1TEMbKSsmpRosqhwj9gWgFRZSrBr2f9tiXISwNhCPmlfqUqyb9Q==
 
-"@voiceflow/commitlint-config@^1.1.0":
+"@voiceflow/commitlint-config@1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@voiceflow/commitlint-config/-/commitlint-config-1.1.0.tgz#736b9e099830834b4f85998242d4cff6b1968dfd"
   integrity sha512-5bBAyKsjT7R/mDBDpfvS9l04srf2DfAMJnhKlJFkuSyFM3qm/by7k5DQxLMrZySKOKxbxhykaTM1zm7/e8/yzg==
   dependencies:
     "@commitlint/config-conventional" "^12.1.4"
 
-"@voiceflow/eslint-config@^3.2.2":
+"@voiceflow/eslint-config@3.2.2":
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/@voiceflow/eslint-config/-/eslint-config-3.2.2.tgz#985cac0d672ffd15f06bff9370ae494579e2bc13"
   integrity sha512-N8mORM1TImC6qCoEHBHb+12btXJj1G2YhodnZqqzoESyp4y7+LlVyoHsIrqPQjGtNPvYOMrberYtZSQwC40eJw==
@@ -656,14 +656,14 @@
     eslint-plugin-xss "^0.1.9"
     eslint-plugin-you-dont-need-lodash-underscore "^6.11.0"
 
-"@voiceflow/git-branch-check@^1.2.0":
+"@voiceflow/git-branch-check@1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@voiceflow/git-branch-check/-/git-branch-check-1.2.0.tgz#773e07c5e4558283b8f94a0e7e05b88e637bc3d0"
   integrity sha512-t+c50h+brJHwXbPDNoOT9Q2WYKWGd7usHNsp0B8qI0IBJLdH/CKTAsV+4gxO2IS8jMXVNxcyE2r25tHO3zRsFQ==
   dependencies:
     current-git-branch "^1.1.0"
 
-"@voiceflow/prettier-config@^1.0.5":
+"@voiceflow/prettier-config@1.0.5":
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/@voiceflow/prettier-config/-/prettier-config-1.0.5.tgz#307caf65040ae0c0539ecb8531b9e403381f11ab"
   integrity sha512-yM35E7UI0fD8yMgL7JImljvMLZVU+jCz/latc2s2e7Nlbr9kiMpO0FArjkaXVIghhcUeQ0y04lsFUHRu3kMzmA==
